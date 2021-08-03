@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div style={{ overflowY: scroll }}>
+        <div style={{ overflowY: "scroll" }}>
           <h1 className={styles.title}>Lissa & Martinas</h1>
           <h2>Address</h2>
           <p>
