@@ -13,60 +13,63 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Lissa & Martinas</h1>
-        <h2>Address</h2>
-        <p>
-          The Corn Crib
-          <br />
-          Rocklands Farm Winery
-          <br />
-          14531 Montevideo Rd, Poolesville, MD 20837
-        </p>
+        <div style={{ overflowY: scroll }}>
+          <h1 className={styles.title}>Lissa & Martinas</h1>
+          <h2>Address</h2>
+          <p>
+            The Corn Crib
+            <br />
+            Rocklands Farm Winery
+            <br />
+            14531 Montevideo Rd, Poolesville, MD 20837
+          </p>
 
-        <h2>Accommodation</h2>
+          <h2>Accommodation</h2>
 
-        <p>
-          We have not booked out any hotel rooms, but please reach out to us if
-          you have any questions about where to stay.
-        </p>
+          <p>
+            We have not booked out any hotel rooms, but please reach out to us
+            if you have any questions about where to stay.
+          </p>
 
-        <h2>Dress Code</h2>
+          <h2>Dress Code</h2>
 
-        <p>
-          Ladies: summer dress, jumpsuit, jeans and a nice top, comfortable
-          shoes
-        </p>
+          <p>
+            Ladies: summer dress, jumpsuit, jeans and a nice top, comfortable
+            shoes
+          </p>
 
-        <p>Gents: shorts, jeans, a polo or button up, comfortable shoes</p>
-        <p>
-          There will be benches and picnic blankets for seating, so dress for
-          the weather, look nice, but be comfortable!
-        </p>
-        <p>Please remember to bring a face covering</p>
-        <p>examples below:</p>
+          <p>Gents: shorts, jeans, a polo or button up, comfortable shoes</p>
+          <p>
+            There will be benches and picnic blankets for seating, so dress for
+            the weather, look nice, but be comfortable!
+          </p>
+          <p>Please remember to bring a face covering</p>
+          <p>examples below:</p>
 
-        <div>
-          <a
-            data-pin-do="embedBoard"
-            data-pin-board-width="400"
-            data-pin-scale-height="240"
-            data-pin-scale-width="80"
-            href="https://www.pinterest.com/lissamei/dress-code/"
-          ></a>
-        </div>
+          <div>
+            <a
+              data-pin-do="embedBoard"
+              data-pin-board-width="400"
+              data-pin-scale-height="240"
+              data-pin-scale-width="80"
+              href="https://www.pinterest.com/lissamei/dress-code/"
+            ></a>
+          </div>
 
-        <h1>Wedding Events</h1>
+          <h1>Wedding Events</h1>
 
-        <p>Thursday Family Dinner: Indian food</p>
-        <p>Friday Winery Picnic: Tacos</p>
-        <p>Friday After Party: Booze, champagne toasts</p>
-        <p>Saturday Out of Town guests brunch: bagels, donuts, fruit, juices</p>
+          <p>Thursday Family Dinner: Indian food</p>
+          <p>Friday Winery Picnic: Tacos</p>
+          <p>Friday After Party: Booze, champagne toasts</p>
+          <p>
+            Saturday Out of Town guests brunch: bagels, donuts, fruit, juices
+          </p>
 
-        <h2>Registry</h2>
-        <p>http://www.wanderable.com/hm/LissaandMartinas</p>
-        <p>Or directly at: Venmo: @LissaEng, @Martinas-Terskin</p>
+          <h2>Registry</h2>
+          <p>http://www.wanderable.com/hm/LissaandMartinas</p>
+          <p>Or directly at: Venmo: @LissaEng, @Martinas-Terskin</p>
 
-        {/* <p className={styles.description}>
+          {/* <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
@@ -101,6 +104,7 @@ export default function Home() {
           </a>
         </div>
      */}
+        </div>
       </main>
 
       {/* <footer className={styles.footer}>
