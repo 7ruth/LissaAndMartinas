@@ -46,7 +46,7 @@ export default function Home() {
           <p>Please remember to bring a face covering</p>
           <p>examples below:</p>
 
-          <div>
+          <div style={{ height: "200px" }}>
             <a
               data-pin-do="embedBoard"
               data-pin-board-width="400"
