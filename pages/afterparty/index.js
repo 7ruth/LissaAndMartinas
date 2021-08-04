@@ -36,7 +36,7 @@ export default function Home() {
           </div>
 
           <h2>After party</h2>
-          <p>Join us for late night fun</p>
+          <p>Let the party continue!</p>
 
           <h2>Location</h2>
           <p>

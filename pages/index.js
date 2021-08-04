@@ -35,6 +35,18 @@ export default function Home() {
             />
           </div>
 
+          <h2>Are you coming?</h2>
+          <p>
+            {" "}
+            <a
+              style={{ color: "blue", textDecorate: "underline" }}
+              href={
+                "https://docs.google.com/forms/u/1/d/e/1FAIpQLSemTLftJwi9-YNPDOvLUr3tWcyJldN2gjAfjlFSG5irZaY1rQ/viewform?usp=send_form"
+              }
+            >
+              RSVP
+            </a>
+          </p>
           <h2>Location</h2>
           <p>
             The Corn Crib
@@ -46,6 +58,13 @@ export default function Home() {
 
           <h2>Time</h2>
           <p>5pm-9pm</p>
+
+          <h2>Details</h2>
+          <p>
+            We made it official on April 3, 2021, and are excited to (finally)
+            celebrate with family and friends! Join us for an evening of food
+            and drink in an outdoor space. xx L+M
+          </p>
 
           <h2>Accommodation</h2>
 
@@ -64,10 +83,10 @@ export default function Home() {
           <p>Gents: shorts, jeans, a polo or button up, comfortable shoes</p>
           <p>
             There will be benches and picnic blankets for seating, so dress for
-            the weather, look nice, but be comfortable!
+            the weather, and be comfortable!
           </p>
-          <p>Please remember to bring a face covering</p>
-          <p>examples below:</p>
+          <p>Please remember to bring a face covering.</p>
+          <p>Examples below:</p>
 
           <div>
             <a
@@ -79,13 +98,16 @@ export default function Home() {
             ></a>
           </div>
 
-          <h2>Honeymoon Fund</h2>
+          <h2>Gifts</h2>
           <p>
+            {" "}
+            We do not have a registry, but if you would like to give a gift,
+            please contribute to our{" "}
             <a
               style={{ color: "blue", textDecorate: "underline" }}
               href={"http://www.wanderable.com/hm/LissaandMartinas"}
             >
-              Registry Link
+              honeymoon fund.
             </a>
           </p>
           <p>Or directly at: Venmo: @LissaEng, @Martinas-Terskin</p>
