@@ -12,10 +12,30 @@ export default function Home() {
         <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
       </Head>
 
-      <main className={styles.main}>
-        <div style={{ overflowY: "scroll" }}>
+      <main>
+        <div style={{ overflowY: "scroll", margin: "0 15%" }}>
           <h1 className={styles.title}>Lissa & Martinas</h1>
-          <h2>Address</h2>
+          <h2 style={{ margin: "10px auto", textAlign: "center" }}>
+            September 3, 2021
+          </h2>
+          <div
+            style={{
+              position: "relative",
+              margin: "7% auto",
+              height: "300px",
+              width: "235px",
+              borderRadius: "10px",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              layout="fill"
+              alt={"Lissa & Martinas"}
+              src={"/image_1.jpeg"}
+            />
+          </div>
+
+          <h2>Location</h2>
           <p>
             The Corn Crib
             <br />
@@ -24,6 +44,9 @@ export default function Home() {
             14531 Montevideo Rd, Poolesville, MD 20837
           </p>
 
+          <h2>Time</h2>
+          <p>5pm-9pm</p>
+
           <h2>Accommodation</h2>
 
           <p>
@@ -31,7 +54,7 @@ export default function Home() {
             if you have any questions about where to stay.
           </p>
 
-          <h2>Dress Code</h2>
+          <h2>What to wear</h2>
 
           <p>
             Ladies: summer dress, jumpsuit, jeans and a nice top, comfortable
@@ -46,7 +69,7 @@ export default function Home() {
           <p>Please remember to bring a face covering</p>
           <p>examples below:</p>
 
-          <div style={{ height: "200px" }}>
+          <div>
             <a
               data-pin-do="embedBoard"
               data-pin-board-width="400"
@@ -56,17 +79,15 @@ export default function Home() {
             ></a>
           </div>
 
-          <h1>Wedding Events</h1>
-
-          <p>Thursday Family Dinner: Indian food</p>
-          <p>Friday Winery Picnic: Tacos</p>
-          <p>Friday After Party: Booze, champagne toasts</p>
+          <h2>Honeymoon Fund</h2>
           <p>
-            Saturday Out of Town guests brunch: bagels, donuts, fruit, juices
+            <a
+              style={{ color: "blue", textDecorate: "underline" }}
+              href={"http://www.wanderable.com/hm/LissaandMartinas"}
+            >
+              Registry Link
+            </a>
           </p>
-
-          <h2>Registry</h2>
-          <p>http://www.wanderable.com/hm/LissaandMartinas</p>
           <p>Or directly at: Venmo: @LissaEng, @Martinas-Terskin</p>
 
           {/* <p className={styles.description}>
