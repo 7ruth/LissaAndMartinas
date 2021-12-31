@@ -139,7 +139,7 @@ export default function Home(props) {
     return (
       // <div style={{ display: "flex", flexDirection: "column" }}>
       <div>
-        <img
+        <img // eslint-disable-line @next/next/no-img-element
           className="image-gallery-image"
           // style={{ transform: "rotate(90deg)" }}
           src={item.original}
