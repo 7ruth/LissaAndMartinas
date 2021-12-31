@@ -1,7 +1,127 @@
+import React, { useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import ImageGallery from "react-image-gallery";
 import styles from "../styles/Home.module.css";
 import fs from "fs";
+import Wrap from "../components/Home/components/Wrap";
+
+const images = [
+  {
+    original: "a_IMG.png",
+    thumbnail: "a_IMG.png",
+    title: "4.3.21....🚀",
+    description:
+      "We got married! Uncertain of whether or not we'd be able to have a wedding, we decided to elope. On a perfectly sunny day in April, we exchanged vows and rings, and had a lovely picnic in a meadow.",
+  },
+  {
+    original: "b_IMG.png",
+    thumbnail: "b_IMG.png",
+    title: "The attic",
+    description:
+      "Late last year, we bought a house built in the '70s, and it had its original insulation. Martinas spent a lot of 2021 in the attic putting in new insulation. After all of his hard work, our home has been a lot warmer this winter.",
+  },
+  {
+    original: "c_IMG.png",
+    thumbnail: "c_IMG.png",
+    title: "Our garden",
+    description:
+      "We saw our backyard come to life this spring/summer. After having lived in the city for several years, we took advantage of having green space to grow veggies and flowers.",
+  },
+  {
+    original: "d_IMG.png",
+    thumbnail: "d_IMG.png",
+    title: "Dahlias",
+    description: "Lissa's proudest garden achievement.",
+  },
+  {
+    original: "g_IMG.png",
+    thumbnail: "g_IMG.png",
+    title: "It's always sunny...",
+    description:
+      "in our house! Which is great. However, after having to wear his sunglasses indoors because of how bright it was, Martinas installed skylight blinds. The joys of home ownership!",
+  },
+  {
+    original: "h_IMG.png",
+    thumbnail: "h_IMG.png",
+    title: "Desert travel",
+    description:
+      "We went to Arizona and Utah! Taking a break from fixing up our home, we had a summer holiday hiking around some desert landscapes. Here we are in a slightly cooler Sedona. Also, Martinas is the original #wireditgirl.",
+  },
+  {
+    original: "i_IMG.png",
+    thumbnail: "i_IMG.png",
+    title: "I spy...",
+    description: "Martinas! Can you spot him? Hint: bottom left",
+  },
+  {
+    original: "j_IMG.png",
+    thumbnail: "j_IMG.png",
+    title: "Iceland",
+    description:
+      "Lissa had a blissful week in Iceland, escaping Maryland's summer heat (and terrifying cicadas). What a magical place! This is a photo of Diamond Beach at sunset.",
+  },
+  {
+    original: "k_IMG.png",
+    thumbnail: "k_IMG.png",
+    title: "Family time",
+    description: "We were lucky to see a lot of loved ones this year...",
+  },
+  {
+    original: "l_IMG.png",
+    thumbnail: "l_IMG.png",
+    title: "Thankful",
+    description: "...and to host our first Thanksgiving in our home.",
+  },
+  {
+    original: "m_IMG.png",
+    thumbnail: "m_IMG.png",
+    title: "The half",
+    description:
+      "Lissa trained all summer to run her second marathon in October. This is her half marathon medal from her race in Philly, which was a fun run before the full marathon race.",
+  },
+  {
+    original: "n_IMG.png",
+    thumbnail: "n_IMG.png",
+    title: "The full",
+    description:
+      "Lissa ran the Wineglass Marathon in upstate NY with her BLINK running group. 26.2 miles in the rain! She forgot to take a photo of her medal, but this was really good chocolate milk that she had at the end of the race. GO BLINKs!",
+  },
+  {
+    original: "o_IMG.png",
+    thumbnail: "o_IMG.png",
+    title: "Rest and recovery",
+    description:
+      "But make it accidental! Post-marathon, Lissa sprained her ankle and couldn't run for months. She is grateful to Martinas and her dear friends who literally carried her, and pushed her around in a wheelchair. ",
+  },
+  {
+    original: "p_IMG.png",
+    thumbnail: "p_IMG.png",
+    title: "Start up life",
+    description: `Martinas has a business! Check out Offermarket.us if you haven't already.`,
+  },
+  {
+    original: "q_IMG.png",
+    thumbnail: "q_IMG.png",
+    title: "Local fun",
+    description:
+      "We loved having beautiful spaces so closeby, like Glenstone Museum.",
+  },
+  {
+    original: "r_IMG.png",
+    thumbnail: "r_IMG.png",
+    title: "DC day",
+    description:
+      "We're feeling like true suburbanites now, where we plan trips to DC. Here is Lissa in one of our favorite museums, the National Portrait Gallery.",
+  },
+  {
+    original: "s_IMG.png",
+    thumbnail: "s_IMG.png",
+    title: "From Maryland Heights, with love",
+    description:
+      "Cheers to 2022! We wish you a healthy and joyful rest of the year, and look forward to safely seeing everyone in the new year! ",
+  },
+];
 
 export async function getStaticProps() {
   const publicData = fs.readdirSync("./public");
@@ -14,92 +134,34 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
-  console.log("publicData_1");
-  // console.log(props.publicData);
-  // const captions = ["hi", "h1222", "hwee11"];
-  const captions = [
-    {
-      title: "4.3.21",
-      description:
-        "We got married! Uncertain of whether or not we'd be able to have a wedding, we decided to elope. On a perfectly sunny day in April, we exchanged vows and rings, and had a lovely picnic in a meadow.",
-    },
-    {
-      title: "The attic",
-      description:
-        "Late last year, we bought a house built in the '70s, and it had its original insulation. Martinas spent a lot of 2021 in the attic putting in new insulation. After all of his hard work, our home has been a lot warmer this winter.",
-    },
-    {
-      title: "Our garden",
-      description:
-        "We saw our backyard come to life this spring/summer. After having lived in the city for several years, we took advantage of having green space to grow veggies and flowers.",
-    },
-    {
-      title: "Dahlias",
-      description: "Lissa's proudest garden achievement.",
-    },
-    {
-      title: "It's always sunny...",
-      description:
-        "in our house! Which is great. However, after having to wear his sunglasses indoors because of how bright it was, Martinas installed skylight blinds. The joys of home ownership!",
-    },
-    {
-      title: "Desert travel",
-      description:
-        "We went to Arizona and Utah! Taking a break from fixing up our home, we had a summer holiday hiking around some desert landscapes. Here we are in a slightly cooler Sedona. Also, Martinas is the original #wireditgirl.",
-    },
-    {
-      title: "I spy...",
-      description: "Martinas! Can you spot him?",
-    },
-    {
-      title: "Iceland",
-      description:
-        "Lissa had a blissful week in Iceland, escaping Maryland's summer heat (and terrifying cicadas). What a magical place! This is a photo of Diamond Beach at sunset.",
-    },
-    {
-      title: "Family time",
-      description: "We were lucky to see a lot of loved ones this year...",
-    },
-    {
-      title: "Thankful",
-      description: "...and to host our first Thanksgiving in our home.",
-    },
-    {
-      title: "The half",
-      description:
-        "Lissa trained all summer to run her second marathon in October. This is her half marathon medal from her race in Philly, which was a fun run before the full marathon race.",
-    },
-    {
-      title: "The full",
-      description:
-        "Lissa ran the Wineglass Marathon in upstate NY with her BLINK running group. 26.2 miles in the rain! She forgot to take a photo of her medal, but this was really good chocolate milk that she had at the end of the race. GO BLINKs!",
-    },
-    {
-      title: "Rest and recovery",
-      description:
-        "But make it accidental! Post-marathon, Lissa sprained her ankle and couldn't run for months. She is grateful to Martinas and her dear friends who literally carried her, and pushed her around in a wheelchair. ",
-    },
-    {
-      title: "Start up life",
-      description:
-        "Martinas has a business! Check out Offermarket.us if you haven't already.",
-    },
-    {
-      title: "Local fun",
-      description:
-        "We loved having beautiful spaces so closeby, like Glenstone Museum. Do you see the 'M' for Martinas?",
-    },
-    {
-      title: "DC day",
-      description:
-        "We're feeling like true suburbanites now, where we plan trips to DC. Here is Lissa in one of our favorite museums, the National Portrait Gallery.",
-    },
-    {
-      title: "From Maryland Heights, with love",
-      description:
-        "Cheers to 2022! We wish you a healthy and joyful rest of the year, and look forward to safely seeing everyone in the new year! ",
-    },
-  ];
+  const customRender = (item) => {
+    // customize your own slide below
+    return (
+      // <div style={{ display: "flex", flexDirection: "column" }}>
+      <div>
+        <img
+          className="image-gallery-image"
+          // style={{ transform: "rotate(90deg)" }}
+          src={item.original}
+          alt={item.originalAlt}
+          srcSet={item.srcSet}
+          sizes={item.sizes}
+          title={item.originalTitle}
+        />
+        {(item.description || item.title) && (
+          <div className="image-gallery-description">
+            <div className="image-gallery-description-title">{item.title}</div>
+            <div className="image-gallery-description-text">
+              {item.description}
+            </div>
+          </div>
+        )}
+      </div>
+      // <div className="image-gallery-image">
+      // </div>
+    );
+  };
+  // console.log("publicData_1");
 
   const sorted = props.publicData
     .filter((item) => {
@@ -111,6 +173,18 @@ export default function Home(props) {
 
   console.log(sorted);
 
+  const galleryRef = useRef(null);
+
+  const startGallery = () => {
+    console.log(galleryRef?.current);
+
+    galleryRef?.current?.fullScreen();
+  };
+  // useEffect(() => {
+  //   (async () => {
+  //   })();
+  // }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -121,9 +195,17 @@ export default function Home(props) {
       </Head>
 
       <main>
-        <div style={{ margin: "0 5%" }}>
-          <h1 className={styles.title}>Lissa & Martinas</h1>
-          <div style={{ width: "80%", margin: "0 auto" }}>
+        <Wrap style={{ margin: "0 5%", margin: "1%" }}>
+          <h1 className={styles.title}>2021 Highlights</h1>
+          {/* <button onClick={() => startGallery()}> For best experience..</button> */}
+          <ImageGallery
+            ref={galleryRef}
+            autoPlay={false}
+            items={images}
+            renderItem={customRender}
+          />
+
+          {/* <div style={{ width: "80%", margin: "0 auto" }}>
             {sorted.map((item, i) => {
               return (
                 <div
@@ -155,7 +237,7 @@ export default function Home(props) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
           {/* <h2 style={{ margin: "10px auto", textAlign: "center" }}>
             September 3, 2021
           </h2> */}
@@ -288,7 +370,7 @@ export default function Home(props) {
           </a>
         </div>
      */}
-        </div>
+        </Wrap>
       </main>
 
       {/* <footer className={styles.footer}>
