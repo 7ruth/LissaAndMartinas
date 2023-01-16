@@ -5,121 +5,184 @@ import ImageGallery from "react-image-gallery";
 import styles from "../styles/Home.module.css";
 import fs from "fs";
 import Wrap from "../components/Home/components/Wrap";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import Box from "@mui/material/Box";
+import { useState, useLayoutEffect } from "react";
 
 const images = [
   {
-    original: "a_IMG.png",
-    thumbnail: "a_IMG.png",
-    title: "4.3.21....🚀",
+    original: "2022/a_IMG.png",
+    thumbnail: "2022/a_IMG.png",
+    title: "Yearly tradition",
     description:
-      "We got married! Uncertain of whether or not we'd be able to have a wedding, we decided to elope. On a perfectly sunny day in April, we exchanged vows and rings, and had a lovely picnic in a meadow.",
+      "Martinas started the year with the annual boys ski trip, something he's been doing with friends since high school. Lissa joined for part of the journey, staying in Seattle while the rest of the group continued on to Lake Tahoe.",
   },
   {
-    original: "b_IMG.png",
-    thumbnail: "b_IMG.png",
-    title: "The attic",
+    original: "2022/b_IMG.png",
+    thumbnail: "2022/b_IMG.png",
+    title: "The Lads",
     description:
-      "Late last year, we bought a house built in the '70s, and it had its original insulation. Martinas spent a lot of 2021 in the attic putting in new insulation. After all of his hard work, our home has been a lot warmer this winter.",
+      "Lake Tahoe had amazing views, and Martinas hopes to be back there soon.",
   },
   {
-    original: "c_IMG.png",
-    thumbnail: "c_IMG.png",
-    title: "Our garden",
+    original: "2022/c_IMG.png",
+    thumbnail: "2022/c_IMG.png",
+    title: "Nailed It",
+    description: "",
+  },
+  {
+    original: "2022/e_IMG.mov",
+    thumbnail: "2022/e_IMG.mov",
+    title: "Escaping the cold",
+    video: true,
     description:
-      "We saw our backyard come to life this spring/summer. After having lived in the city for several years, we took advantage of having green space to grow veggies and flowers.",
+      "In February, Lissa took a trip to Miami to meet up with friends who flew in from London. It was a fun reunion, and highlights included spotting crocodiles on an airboat tour, seeing all kinds of wildlife in the Everglades and spotting a Portuguese Man-o'-War on South Beach.",
   },
   {
-    original: "d_IMG.png",
-    thumbnail: "d_IMG.png",
-    title: "Dahlias",
-    description: "Lissa's proudest garden achievement.",
-  },
-  {
-    original: "g_IMG.png",
-    thumbnail: "g_IMG.png",
-    title: "It's always sunny...",
+    original: "2022/d_IMG.mov",
+    thumbnail: "2022/d_IMG.mov",
+    video: true,
+    title: "Beach life",
     description:
-      "in our house! Which is great. However, after having to wear his sunglasses indoors because of how bright it was, Martinas installed skylight blinds. The joys of home ownership!",
+      "Lissa also got to see family in Florida, visiting her Uncle who not only took her to see the house that he and Lissa's dad grew up in, but also drove her by Tiger Wood's house on Jupiter Island.",
   },
   {
-    original: "h_IMG.png",
-    thumbnail: "h_IMG.png",
-    title: "Desert travel",
+    original: "2022/f_IMG.mov",
+    thumbnail: "2022/f_IMG.mov",
+    video: true,
+    title: "Joshua Tree",
     description:
-      "We went to Arizona and Utah! Taking a break from fixing up our home, we had a summer holiday hiking around some desert landscapes. Here we are in a slightly cooler Sedona. Also, Martinas is the original #wireditgirl.",
+      "One of Lissa's favorite trips this year was in March, hiking around Joshua Tree and exploring different parts of southern California with a friend.",
   },
   {
-    original: "i_IMG.png",
-    thumbnail: "i_IMG.png",
-    title: "I spy...",
-    description: "Martinas! Can you spot him? Hint: bottom left",
-  },
-  {
-    original: "j_IMG.png",
-    thumbnail: "j_IMG.png",
-    title: "Iceland",
+    original: "2022/g_IMG.png",
+    thumbnail: "2022/g_IMG.png",
+    title: "Dad turns 70!",
     description:
-      "Lissa had a blissful week in Iceland, escaping Maryland's summer heat (and terrifying cicadas). What a magical place! This is a photo of Diamond Beach at sunset.",
+      "This year we celebrated Dad's 70th birthday! After a couple years of virtual and smaller celebrations, we were lucky to have many friends and family members gather for dad's surprise party.",
   },
   {
-    original: "k_IMG.png",
-    thumbnail: "k_IMG.png",
-    title: "Family time",
-    description: "We were lucky to see a lot of loved ones this year...",
-  },
-  {
-    original: "l_IMG.png",
-    thumbnail: "l_IMG.png",
-    title: "Thankful",
-    description: "...and to host our first Thanksgiving in our home.",
-  },
-  {
-    original: "m_IMG.png",
-    thumbnail: "m_IMG.png",
-    title: "The half",
+    original: "2022/j_IMG.mov",
+    thumbnail: "2022/j_IMG.mov",
+    video: true,
+    title: "Teleworking in Chicago",
     description:
-      "Lissa trained all summer to run her second marathon in October. This is her half marathon medal from her race in Philly, which was a fun run before the full marathon race.",
+      "Having more flexibility to work remotely this year allowed Lissa to visit a friend in Chicago in May, where they worked during the day and had fun the rest of the time biking in the sun, eating Oberweiss ice cream and seeing an orchestral Taylor Swift concert.",
   },
   {
-    original: "n_IMG.png",
-    thumbnail: "n_IMG.png",
-    title: "The full",
+    original: "2022/k_IMG.mov",
+    thumbnail: "2022/k_IMG.mov",
+    video: true,
+    title: "More beach trips",
     description:
-      "Lissa ran the Wineglass Marathon in upstate NY with her BLINK running group. 26.2 miles in the rain! She forgot to take a photo of her medal, but this was really good chocolate milk that she had at the end of the race. GO BLINKs!",
+      "Lissa started a new job in April, that took her to coastal cities (read: beaches) several times this year. In June, she took a trip in June to Virginia Beach to see these magnificent offshore wind turbines.",
   },
   {
-    original: "o_IMG.png",
-    thumbnail: "o_IMG.png",
-    title: "Rest and recovery",
+    original: "2022/l_IMG.png",
+    thumbnail: "2022/l_IMG.png",
+    title: "DC meetup",
     description:
-      "But make it accidental! Post-marathon, Lissa sprained her ankle and couldn't run for months. She is grateful to Martinas and her dear friends who literally carried her, and pushed her around in a wheelchair. ",
+      "Martinas and Lissa loved seeing more friends in person this year, after having so many virtual meetups to keep in touch.",
   },
   {
-    original: "p_IMG.png",
-    thumbnail: "p_IMG.png",
-    title: "Start up life",
-    description: `Martinas has a business! Check out Offermarket.us if you haven't already.`,
-  },
-  {
-    original: "q_IMG.png",
-    thumbnail: "q_IMG.png",
-    title: "Local fun",
+    original: "2022/m_IMG.png",
+    thumbnail: "2022/m_IMG.png",
+    title: "Weekend getaway",
     description:
-      "We loved having beautiful spaces so closeby, like Glenstone Museum.",
+      "One of the trips Lissa took with friends she had not seen in awhile was to a baby goat farm in North Carolina.",
   },
   {
-    original: "r_IMG.png",
-    thumbnail: "r_IMG.png",
-    title: "DC day",
+    original: "2022/n_IMG.mov",
+    thumbnail: "2022/n_IMG.mov",
+    video: true,
+    title: "Wedding season begins",
     description:
-      "We're feeling like true suburbanites now, where we plan trips to DC. Here is Lissa in one of our favorite museums, the National Portrait Gallery.",
+      "Martinas and Lissa attended their first wedding of the year in July, celebrating a high school friend who got married in upstate New York. Highlights included two ceremonies, rainbows, raw bar cocktail hour, dancing to a live band and spending a weekend with friends.",
   },
   {
-    original: "s_IMG.png",
-    thumbnail: "s_IMG.png",
-    title: "From Maryland Heights, with love",
+    original: "2022/o_IMG.png",
+    thumbnail: "2022/o_IMG.png",
+    title: "Banff",
+    description: "",
+  },
+  {
+    original: "2022/p_IMG.png",
+    thumbnail: "2022/p_IMG.png",
+    title: "Tennis with the pros",
+    description: `.`,
+  },
+  {
+    original: "2022/s_IMG.png",
+    thumbnail: "2022/s_IMG.png",
+    title: "Горько!",
+    description: " ",
+  },
+  {
+    original: "2022/t_IMG.mov",
+    thumbnail: "2022/t_IMG.mov",
+    video: true,
+    title: "Harry Potter, Love Bugs and The Weeknd",
     description:
       "Cheers to 2022! We wish you a healthy and joyful rest of the year, and look forward to safely seeing everyone in the new year! ",
+  },
+  {
+    original: "2022/u_IMG.png",
+    thumbnail: "2022/u_IMG.png",
+    title: "Bridesmaids and new friends",
+    description: " ",
+  },
+  {
+    original: "2022/v_IMG.png",
+    thumbnail: "2022/v_IMG.png",
+    title: "Auntie and Uncle life",
+    description: " ",
+  },
+  {
+    original: "2022/w_IMG.png",
+    thumbnail: "2022/w_IMG.png",
+    title: "Destination: Hawaii",
+    description:
+      "One of the highly anticipated trips of this year was for another high school friend's wedding in Hawaii.",
+  },
+  {
+    original: "2022/x_IMG.mov",
+    thumbnail: "2022/x_IMG.mov",
+    title: "Sea turtles in the wild",
+    description: " ",
+    video: true,
+  },
+  {
+    original: "2022/y_IMG.mov",
+    thumbnail: "2022/y_IMG.mov",
+    title: "Home away from home",
+    description: " ",
+    video: true,
+  },
+  {
+    original: "2022/z_IMG.png",
+    thumbnail: "2022/z_IMG.png",
+    title: "BLINKs are back",
+    description: " ",
+  },
+  {
+    original: "2022/aa_IMG.png",
+    thumbnail: "2022/aa_IMG.png",
+    title: "Thankful",
+    description: " ",
+  },
+  {
+    original: "2022/bb_IMG.png",
+    thumbnail: "2022/bb_IMG.png",
+    title: "Staying local for the holidays",
+    description: " ",
+  },
+  {
+    original: "2022/cc_IMG.png",
+    thumbnail: "2022/cc_IMG.png",
+    title: "Christmas walk",
+    description: " ",
   },
 ];
 
@@ -134,6 +197,31 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
+  const [windowDimensions, setWindowDimensions] = useState(null);
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+
+  useEffect(() => {
+    setWindowDimensions(getWindowDimensions());
+    console.log("windowDimensions_1");
+    console.log(windowDimensions);
+  }, []);
+
+  useLayoutEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const customRender = (item) => {
     // customize your own slide below
     return (
@@ -161,7 +249,6 @@ export default function Home(props) {
       // </div>
     );
   };
-  // console.log("publicData_1");
 
   const sorted = props.publicData
     .filter((item) => {
@@ -195,196 +282,94 @@ export default function Home(props) {
       </Head>
 
       <main>
-        <Wrap style={{ margin: "0 5%", margin: "1%" }}>
-          <h1 className={styles.title}>2021 Highlights</h1>
-          {/* <button onClick={() => startGallery()}> For best experience..</button> */}
-          <ImageGallery
-            ref={galleryRef}
-            autoPlay={false}
-            items={images}
-            renderItem={customRender}
-          />
-
-          {/* <div style={{ width: "80%", margin: "0 auto" }}>
-            {sorted.map((item, i) => {
-              return (
-                <div
-                  // style={{
-                  //   width: "100%",
-                  //   height: "20vh",
-                  // }}
-                  key={`image_${i}`}
+        <h1 className={styles.title}>2022: Reunions & Celebrations</h1>
+        {windowDimensions && (
+          <Box sx={{ display: "flex" }}>
+            {console.log("windowDimensions.width * 0.9_4")}
+            {console.log(windowDimensions.width * 0.9)}
+            <ImageList
+              sx={{
+                width: `${
+                  windowDimensions.width < 500
+                    ? windowDimensions.width * 0.9
+                    : 600
+                }px`,
+                margin: "auto",
+              }}
+              cols={1}
+              rowHeight={600}
+              // sx={{ width: 500, height: 450 }}
+            >
+              {images.map((item) => (
+                <ImageListItem
+                  sx={{
+                    width: `${
+                      windowDimensions.width < 500
+                        ? windowDimensions.width * 0.9
+                        : 600
+                    }px`,
+                    height: 400,
+                    margin: "auto auto 33px auto",
+                    "& .MuiImageListItem-img": {
+                      overflow: "hidden",
+                      height: "inherit",
+                    },
+                  }}
+                  cols={1}
+                  key={item.img}
                 >
-                  <div
-                    style={{
-                      position: "relative",
-                      margin: "30px auto auto auto",
-                      width: "800px",
-                      height: "800px",
-                      // width: "auto",
-                      // height: "30vh",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <Image src={`/${item}`} layout={"fill"} />
-                  </div>
-                  {captions[i] && (
-                    <div>
-                      <h2 style={{ marginBottom: 0 }}>{captions[i].title}</h2>
-                      <code>{captions[i].description}</code>
-                    </div>
+                  {!item.video ? (
+                    <img
+                      width={`${
+                        windowDimensions.width < 500
+                          ? windowDimensions.width * 0.9
+                          : 600
+                      }`}
+                      height="400"
+                      // src={`${item.original}?w=248&fit=crop&auto=format`}
+                      src={`${item.original}?w=600&h=400&fit=crop&auto=format`}
+                      // srcSet={`${item.original}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      srcSet={`${item.original}?w=600&h=400&fit=crop&auto=format`}
+                      alt={item.title}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <video
+                      width={`${
+                        windowDimensions.width < 500
+                          ? windowDimensions.width * 0.9
+                          : 600
+                      }`}
+                      height="400"
+                      controls
+                    >
+                      <source src={item.original} type="video/mp4"></source>
+                    </video>
                   )}
-                </div>
-              );
-            })}
-          </div> */}
-          {/* <h2 style={{ margin: "10px auto", textAlign: "center" }}>
-            September 3, 2021
-          </h2> */}
-          {/* <div
-            style={{
-              position: "relative",
-              margin: "7% auto",
-              height: "300px",
-              width: "235px",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              layout="fill"
-              alt={"Lissa & Martinas"}
-              src={"/image_1.jpeg"}
-            />
-          </div> */}
-
-          {/* <h2>Are you coming?</h2>
-          <p>
-            {" "}
-            <a
-              style={{ color: "blue", textDecorate: "underline" }}
-              href={
-                "https://docs.google.com/forms/u/1/d/e/1FAIpQLSemTLftJwi9-YNPDOvLUr3tWcyJldN2gjAfjlFSG5irZaY1rQ/viewform?usp=send_form"
-              }
-            >
-              RSVP
-            </a>
-          </p>
-          <h2>Location</h2>
-          <p>
-            The Corn Crib
-            <br />
-            Rocklands Farm Winery
-            <br />
-            14531 Montevideo Rd, Poolesville, MD 20837
-          </p>
-
-          <h2>Time</h2>
-          <p>5pm-9pm</p>
-
-          <h2>Details</h2>
-          <p>
-            We made it official on April 3, 2021, and are excited to (finally)
-            celebrate with family and friends! Join us for an evening of food
-            and drink in an outdoor space. xx L+M
-          </p>
-
-          <h2>Accommodation</h2>
-
-          <p>
-            We have not booked out any hotel rooms, but please reach out to us
-            if you have any questions about where to stay.
-          </p>
-
-          <h2>What to wear</h2>
-
-          <p>
-            Ladies: summer dress, jumpsuit, jeans and a nice top, comfortable
-            shoes
-          </p>
-
-          <p>Gents: shorts, jeans, a polo or button up, comfortable shoes</p>
-          <p>
-            There will be benches and picnic blankets for seating, so dress for
-            the weather, and be comfortable!
-          </p>
-          <p>Please remember to bring a face covering.</p>
-          <p>Examples below:</p>
-
-          <div>
-            <a
-              data-pin-do="embedBoard"
-              data-pin-board-width="400"
-              data-pin-scale-height="240"
-              data-pin-scale-width="80"
-              href="https://www.pinterest.com/lissamei/dress-code/"
-            ></a>
-          </div>
-
-          <h2>Gifts</h2>
-          <p>
-            {" "}
-            We do not have a registry, but if you would like to give a gift,
-            please contribute to our{" "}
-            <a
-              style={{ color: "blue", textDecorate: "underline" }}
-              href={"http://www.wanderable.com/hm/LissaandMartinas"}
-            >
-              honeymoon fund.
-            </a>
-          </p>
-          <p>Or directly at: Venmo: @LissaEng, @Martinas-Terskin</p> */}
-
-          {/* <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-     */}
-        </Wrap>
+                  <ImageListItemBar
+                    sx={{
+                      "& .MuiImageListItemBar-title": {
+                        fontSize: "22px",
+                        marginTop: "3px",
+                        fontWeight: 550,
+                      },
+                      "& .MuiImageListItemBar-subtitle": {
+                        fontSize: "14px",
+                        textOverflow: "initial !important",
+                        overflow: "visible !important",
+                        whiteSpace: "inherit !important",
+                      },
+                    }}
+                    title={item.title}
+                    subtitle={item.description}
+                    position="below"
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Box>
+        )}
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
     </div>
   );
 }
