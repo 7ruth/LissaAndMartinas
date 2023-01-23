@@ -316,6 +316,7 @@ export default function Home(props) {
                   key={item.img}
                 >
                   {!item.video ? (
+                    /*eslint-disable */
                     <img
                       width={`${
                         windowDimensions.width < 500
@@ -331,6 +332,7 @@ export default function Home(props) {
                       loading="lazy"
                     />
                   ) : (
+                    /*eslint-enable */
                     <video
                       width={`${
                         windowDimensions.width < 500
